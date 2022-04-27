@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Forms
+{% endblock title %}
+
+{% block content %}
+<div class="container" style="margin-top: 15%;">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Form</h1>
+                    {{form.as_p}}
+                <input type="submit" class="btn btn-danger" value="Gönder" style="font-size: 15px;">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

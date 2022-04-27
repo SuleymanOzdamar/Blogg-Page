@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<div class="main-banner header-text">
+  <div class="container-fluid">
+    <div class="owl-banner owl-carousel">
+      {% for i in posts %}
+      <div class="item">
+        {% if i.image  %}
+        <img src="{{i.image.url}}" alt="">
+        {% else %}
+
+        <img src="{% static 'assets/images/banner-item-01.jpg' %}" alt="">
+        {% endif %}
+        <div class="item-content">
+          <div class="main-content">
+            <div class="meta-category">
+              <span>{{i.user}}</span>
+            </div>
+            <a href="post-details.html">
+              <h4>{{i.title}}</h4>
+            </a>
+            <ul class="post-info">
+              <li><a href="#">{{i.context}}</a></li>
+              <li><a href="#">{{i.publishing_date}}</a></li>
+              <li><a href="#">12 Comments</a></li>
+            </ul>
+            <a href="/post/{{i.id}}" class="btn post-btn">Read More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Banner Ends Here -->
+
+<section class="blog-posts">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="all-blog-posts">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="blog-post">
+                <div class="blog-thumb">
+                {% for i in posts %}
+                  {% if i.image  %}
+                  <img src="{{i.image.url}}" alt="">
+                  {% else %}
+
+                  <img src="{% static 'assets/images/banner-item-01.jpg' %}" alt="">
+                  {% endif %}
+                </div>
+                <div class="down-content">
+                
+                
+                
+                  <div class="meta-category">
+                    <span>{{i.user}}</span>
+                  </div>
+                  <a href="post-details.html">
+                    <h4>{{i.title}}</h4>
+                  </a>
+                  <ul class="post-info">
+                    <li><a href="#">{{i.context}}</a></li>
+                    <li><a href="#">{{i.publishing_date}}</a></li>
+                    <li><a href="#">12 Comments</a></li>
+                  
+                  </ul>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam hic harum quaerat earum dicta ad,
+                    eos ea odio reprehenderit eaque sunt inventore exercitationem officia obcaecati eum eius nihil
+                    tenetur dolor!</p>
+                    {% endfor %}
+                  <div class="post-options">
+                    <div class="row">
+                      <div class="col-6">
+                        <ul class="post-tags">
+                          <li><i class="fa fa-tags"></i></li>
+                          <li><a href="#">Beauty</a>,</li>
+                          <li><a href="#">Nature</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-6">
+                        <ul class="post-share">
+                          <li><i class="fa fa-share-alt"></i></li>
+                          <li><a href="#">Facebook</a>,</li>
+                          <li><a href="#"> Twitter</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="main-button">
+                <a href="{% url 'blog' %}">View All Posts</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="sidebar-item search">
+                <form id="search_form" name="gs" method="GET" action="#" role="search">
+                  <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on"
+                    value="{{ request.GET.q }}">
+                  <input type="submit" value="Ara">
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="sidebar-item recent-posts">
+                <div class="sidebar-heading">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="content">
+                  <ul>
+                    <li><a href="post-details.html">
+                        <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
+                        <span>May 31, 2020</span>
+                      </a></li>
+                    <li><a href="post-details.html">
+                        <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
+                        <span>May 28, 2020</span>
+                      </a></li>
+                    <li><a href="post-details.html">
+                        <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
+                        <span>May 14, 2020</span>
+                      </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="sidebar-item categories">
+                <div class="sidebar-heading">
+                  <h2>Categories</h2>
+                </div>
+                {% for i in category %}
+                <div class="content">
+                  <ul class="category-list">
+                    <li class="list-items" data-aos="fade-left" data-aos-delay="100">
+
+                      <a href="/category/{{i.slug}}">{{i.title}}</a>
+
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="sidebar-item tags">
+                <div class="sidebar-heading">
+                  <h2>Tag Clouds</h2>
+                </div>
+                <div class="content">
+                  <ul>
+                    <li><a href="#">Lifestyle</a></li>
+                    <li><a href="#">Creative</a></li>
+                    <li><a href="#">HTML5</a></li>
+                    <li><a href="#">Inspiration</a></li>
+                    <li><a href="#">Motivation</a></li>
+                    <li><a href="#">PSD</a></li>
+                    <li><a href="#">Responsive</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
